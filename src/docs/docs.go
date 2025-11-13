@@ -36,7 +36,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/types.AutocompleteChoiceRequestDTO"
+                            "$ref": "#/definitions/intelliquiz_src_types.AutocompleteChoiceRequestDTO"
                         }
                     }
                 ],
@@ -44,25 +44,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.AutocompleteChoiceSuccessResponseDTO"
+                            "$ref": "#/definitions/intelliquiz_src_types.AutocompleteChoiceSuccessResponseDTO"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -85,7 +85,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/types.AutocompleteQuestionRequestDTO"
+                            "$ref": "#/definitions/intelliquiz_src_types.AutocompleteQuestionRequestDTO"
                         }
                     }
                 ],
@@ -93,25 +93,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.AutocompleteQuestionSuccessResponseDTO"
+                            "$ref": "#/definitions/intelliquiz_src_types.AutocompleteQuestionSuccessResponseDTO"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -134,7 +134,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/types.AutocompleteQuizRequestDTO"
+                            "$ref": "#/definitions/intelliquiz_src_types.AutocompleteQuizRequestDTO"
                         }
                     }
                 ],
@@ -142,25 +142,135 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.AutocompleteQuizSuccessResponseDTO"
+                            "$ref": "#/definitions/intelliquiz_src_types.AutocompleteQuizSuccessResponseDTO"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
+                        }
+                    }
+                }
+            }
+        },
+        "/ai/generate-question": {
+            "post": {
+                "description": "Generate a complete question with multiple choices using AI",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ai"
+                ],
+                "summary": "Generate Full Question with Choices",
+                "parameters": [
+                    {
+                        "description": "Generate Question Request Body",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/intelliquiz_src_types.GenerateQuestionRequestDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/intelliquiz_src_types.GenerateQuestionSuccessResponseDTO"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
+                        }
+                    }
+                }
+            }
+        },
+        "/ai/generate-quiz": {
+            "post": {
+                "description": "Generate a complete quiz with title, questions and choices using AI",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ai"
+                ],
+                "summary": "Generate Full Quiz with Questions and Choices",
+                "parameters": [
+                    {
+                        "description": "Generate Quiz Request Body",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/intelliquiz_src_types.GenerateQuizRequestDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/intelliquiz_src_types.GenerateQuizSuccessResponseDTO"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -180,19 +290,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.GetCategoriesSuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.GetCategoriesSuccessResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -221,31 +331,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.GetCategorySuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.GetCategorySuccessResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -274,31 +384,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.GetChoiceSuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.GetChoiceSuccessResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -325,31 +435,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.SuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.SuccessResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -380,7 +490,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/types.UpdateChoiceRequestBody"
+                            "$ref": "#/definitions/intelliquiz_src_types.UpdateChoiceRequestBody"
                         }
                     }
                 ],
@@ -388,31 +498,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.SuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.SuccessResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -448,31 +558,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.AnswerQuestionResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.AnswerQuestionResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -501,31 +611,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.GameResultDetailedResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.GameResultDetailedResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -545,13 +655,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.HomePageSuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.HomePageSuccessResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -577,7 +687,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/types.LoginRequestBody"
+                            "$ref": "#/definitions/intelliquiz_src_types.LoginRequestBody"
                         }
                     }
                 ],
@@ -585,25 +695,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.LoginResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.LoginResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -623,25 +733,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.GetOwnUserSuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.GetOwnUserSuccessResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -661,25 +771,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.GamesResultsResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.GamesResultsResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -721,19 +831,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.GetOwnQuizzesSuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.GetOwnQuizzesSuccessResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -753,13 +863,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.GetQuestionsSuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.GetQuestionsSuccessResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -780,7 +890,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/types.CreateQuestionRequestBody"
+                            "$ref": "#/definitions/intelliquiz_src_types.CreateQuestionRequestBody"
                         }
                     }
                 ],
@@ -788,19 +898,19 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/types.CreateQuestionSuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.CreateQuestionSuccessResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -829,25 +939,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.GetQuestionSuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.GetQuestionSuccessResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -874,25 +984,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.SuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.SuccessResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -920,7 +1030,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/types.UpdateQuestionRequestBody"
+                            "$ref": "#/definitions/intelliquiz_src_types.UpdateQuestionRequestBody"
                         }
                     }
                 ],
@@ -928,25 +1038,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.SuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.SuccessResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -975,19 +1085,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.GetChoicesSuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.GetChoicesSuccessResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -1008,7 +1118,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/types.CreateChoiceRequestBody"
+                            "$ref": "#/definitions/intelliquiz_src_types.CreateChoiceRequestBody"
                         }
                     }
                 ],
@@ -1016,25 +1126,25 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/types.CreateChoiceSuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.CreateChoiceSuccessResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -1076,13 +1186,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.GetQuizzesSuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.GetQuizzesSuccessResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -1103,7 +1213,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/types.CreateQuizRequestBody"
+                            "$ref": "#/definitions/intelliquiz_src_types.CreateQuizRequestBody"
                         }
                     }
                 ],
@@ -1111,25 +1221,25 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/types.CreateQuizSuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.CreateQuizSuccessResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -1158,25 +1268,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.GetQuizSuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.GetQuizSuccessResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -1203,31 +1313,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.SuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.SuccessResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -1258,7 +1368,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/types.UpdateQuizRequestBody"
+                            "$ref": "#/definitions/intelliquiz_src_types.UpdateQuizRequestBody"
                         }
                     }
                 ],
@@ -1266,31 +1376,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.SuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.SuccessResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -1319,31 +1429,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.SuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.SuccessResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -1372,31 +1482,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.SuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.SuccessResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -1425,31 +1535,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.StartGameResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.StartGameResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -1475,7 +1585,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/types.RefreshRequestBody"
+                            "$ref": "#/definitions/intelliquiz_src_types.RefreshRequestBody"
                         }
                     }
                 ],
@@ -1483,25 +1593,25 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/types.RefreshResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.RefreshResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -1527,7 +1637,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/types.SignUpRequestBody"
+                            "$ref": "#/definitions/intelliquiz_src_types.SignUpRequestBody"
                         }
                     }
                 ],
@@ -1535,19 +1645,19 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/types.SignUpResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.SignUpResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -1567,19 +1677,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.GetUsersSuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.GetUsersSuccessResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -1608,31 +1718,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.UserResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.UserResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -1663,7 +1773,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/types.UpdateUserRequestBody"
+                            "$ref": "#/definitions/intelliquiz_src_types.UpdateUserRequestBody"
                         }
                     }
                 ],
@@ -1671,31 +1781,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/types.SuccessResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.SuccessResponseStruct"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/types.BadRequestErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.BadRequestErrorResponseStruct"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/types.ForbiddenErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.ForbiddenErrorResponseStruct"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/types.NotFoundErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.NotFoundErrorResponseStruct"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/types.InternalServerErrorResponseStruct"
+                            "$ref": "#/definitions/intelliquiz_src_types.InternalServerErrorResponseStruct"
                         }
                     }
                 }
@@ -1703,7 +1813,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "types.AnswerQuestionDataStruct": {
+        "intelliquiz_src_types.AnswerQuestionDataStruct": {
             "type": "object",
             "properties": {
                 "is_correct": {
@@ -1715,15 +1825,15 @@ const docTemplate = `{
                     "example": false
                 },
                 "next_question": {
-                    "$ref": "#/definitions/types.GameQuestionDTO"
+                    "$ref": "#/definitions/intelliquiz_src_types.GameQuestionDTO"
                 }
             }
         },
-        "types.AnswerQuestionResponseStruct": {
+        "intelliquiz_src_types.AnswerQuestionResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.AnswerQuestionDataStruct"
+                    "$ref": "#/definitions/intelliquiz_src_types.AnswerQuestionDataStruct"
                 },
                 "status_code": {
                     "type": "integer",
@@ -1735,7 +1845,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.AutocompleteChoiceRequestDTO": {
+        "intelliquiz_src_types.AutocompleteChoiceRequestDTO": {
             "type": "object",
             "required": [
                 "category_id",
@@ -1766,7 +1876,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.AutocompleteChoiceSuccessResponseDTO": {
+        "intelliquiz_src_types.AutocompleteChoiceSuccessResponseDTO": {
             "type": "object",
             "properties": {
                 "data": {
@@ -1783,7 +1893,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.AutocompleteQuestionRequestDTO": {
+        "intelliquiz_src_types.AutocompleteQuestionRequestDTO": {
             "type": "object",
             "required": [
                 "category_id",
@@ -1804,7 +1914,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.AutocompleteQuestionSuccessResponseDTO": {
+        "intelliquiz_src_types.AutocompleteQuestionSuccessResponseDTO": {
             "type": "object",
             "properties": {
                 "data": {
@@ -1821,7 +1931,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.AutocompleteQuizRequestDTO": {
+        "intelliquiz_src_types.AutocompleteQuizRequestDTO": {
             "type": "object",
             "required": [
                 "category_id"
@@ -1837,7 +1947,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.AutocompleteQuizSuccessResponseDTO": {
+        "intelliquiz_src_types.AutocompleteQuizSuccessResponseDTO": {
             "type": "object",
             "properties": {
                 "data": {
@@ -1854,7 +1964,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.BadRequestErrorResponseStruct": {
+        "intelliquiz_src_types.BadRequestErrorResponseStruct": {
             "type": "object",
             "properties": {
                 "message": {
@@ -1871,7 +1981,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.CategoryQuizResponseDTOStruct": {
+        "intelliquiz_src_types.CategoryQuizResponseDTOStruct": {
             "type": "object",
             "properties": {
                 "id": {
@@ -1884,7 +1994,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.CategoryResponseStruct": {
+        "intelliquiz_src_types.CategoryResponseStruct": {
             "type": "object",
             "properties": {
                 "id": {
@@ -1898,12 +2008,12 @@ const docTemplate = `{
                 "quizzes": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.GetCategoryQuizDTO"
+                        "$ref": "#/definitions/intelliquiz_src_types.GetCategoryQuizDTO"
                     }
                 }
             }
         },
-        "types.ChoiceDTO": {
+        "intelliquiz_src_types.ChoiceDTO": {
             "type": "object",
             "properties": {
                 "content": {
@@ -1932,7 +2042,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.ChoicesCreateQuestionDTO": {
+        "intelliquiz_src_types.ChoicesCreateQuestionDTO": {
             "type": "object",
             "required": [
                 "content",
@@ -1949,7 +2059,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.CreateChoiceRequestBody": {
+        "intelliquiz_src_types.CreateChoiceRequestBody": {
             "type": "object",
             "required": [
                 "content"
@@ -1961,11 +2071,11 @@ const docTemplate = `{
                 }
             }
         },
-        "types.CreateChoiceSuccessResponseStruct": {
+        "intelliquiz_src_types.CreateChoiceSuccessResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.ChoiceDTO"
+                    "$ref": "#/definitions/intelliquiz_src_types.ChoiceDTO"
                 },
                 "statusCode": {
                     "type": "integer",
@@ -1977,7 +2087,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.CreateQuestionRequestBody": {
+        "intelliquiz_src_types.CreateQuestionRequestBody": {
             "type": "object",
             "required": [
                 "choices",
@@ -1989,7 +2099,7 @@ const docTemplate = `{
                     "type": "array",
                     "minItems": 2,
                     "items": {
-                        "$ref": "#/definitions/types.ChoicesCreateQuestionDTO"
+                        "$ref": "#/definitions/intelliquiz_src_types.ChoicesCreateQuestionDTO"
                     }
                 },
                 "content": {
@@ -2002,11 +2112,11 @@ const docTemplate = `{
                 }
             }
         },
-        "types.CreateQuestionSuccessResponseStruct": {
+        "intelliquiz_src_types.CreateQuestionSuccessResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.QuestionResponseDTO"
+                    "$ref": "#/definitions/intelliquiz_src_types.QuestionResponseDTO"
                 },
                 "statusCode": {
                     "type": "integer",
@@ -2018,7 +2128,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.CreateQuizQuestionChoiceStruct": {
+        "intelliquiz_src_types.CreateQuizQuestionChoiceStruct": {
             "type": "object",
             "properties": {
                 "content": {
@@ -2031,7 +2141,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.CreateQuizQuestionsStruct": {
+        "intelliquiz_src_types.CreateQuizQuestionsStruct": {
             "type": "object",
             "required": [
                 "choices",
@@ -2041,7 +2151,7 @@ const docTemplate = `{
                 "choices": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.CreateQuizQuestionChoiceStruct"
+                        "$ref": "#/definitions/intelliquiz_src_types.CreateQuizQuestionChoiceStruct"
                     }
                 },
                 "content": {
@@ -2050,7 +2160,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.CreateQuizRequestBody": {
+        "intelliquiz_src_types.CreateQuizRequestBody": {
             "type": "object",
             "required": [
                 "category_id",
@@ -2073,16 +2183,16 @@ const docTemplate = `{
                 "questions": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.CreateQuizQuestionsStruct"
+                        "$ref": "#/definitions/intelliquiz_src_types.CreateQuizQuestionsStruct"
                     }
                 }
             }
         },
-        "types.CreateQuizSuccessResponseStruct": {
+        "intelliquiz_src_types.CreateQuizSuccessResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.QuizResponseDTO"
+                    "$ref": "#/definitions/intelliquiz_src_types.QuizResponseDTO"
                 },
                 "statusCode": {
                     "type": "integer",
@@ -2094,7 +2204,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.ForbiddenErrorResponseStruct": {
+        "intelliquiz_src_types.ForbiddenErrorResponseStruct": {
             "type": "object",
             "properties": {
                 "message": {
@@ -2111,7 +2221,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GameQuestionChoiceDTO": {
+        "intelliquiz_src_types.GameQuestionChoiceDTO": {
             "type": "object",
             "properties": {
                 "content": {
@@ -2128,13 +2238,13 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GameQuestionDTO": {
+        "intelliquiz_src_types.GameQuestionDTO": {
             "type": "object",
             "properties": {
                 "choices": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.GameQuestionChoiceDTO"
+                        "$ref": "#/definitions/intelliquiz_src_types.GameQuestionChoiceDTO"
                     }
                 },
                 "content": {
@@ -2151,7 +2261,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GameQuestionResultDTO": {
+        "intelliquiz_src_types.GameQuestionResultDTO": {
             "type": "object",
             "properties": {
                 "answered_at": {
@@ -2159,7 +2269,7 @@ const docTemplate = `{
                     "example": "2025-10-25T18:45:27.849543Z"
                 },
                 "choice": {
-                    "$ref": "#/definitions/types.GameResultChoiceDTO"
+                    "$ref": "#/definitions/intelliquiz_src_types.GameResultChoiceDTO"
                 },
                 "choice_id": {
                     "type": "string",
@@ -2186,7 +2296,7 @@ const docTemplate = `{
                     "example": 0
                 },
                 "question": {
-                    "$ref": "#/definitions/types.GameResultQuestionDTO"
+                    "$ref": "#/definitions/intelliquiz_src_types.GameResultQuestionDTO"
                 },
                 "question_id": {
                     "type": "string",
@@ -2202,7 +2312,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GameResultChoiceDTO": {
+        "intelliquiz_src_types.GameResultChoiceDTO": {
             "type": "object",
             "properties": {
                 "content": {
@@ -2215,19 +2325,19 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GameResultDetailedDataStruct": {
+        "intelliquiz_src_types.GameResultDetailedDataStruct": {
             "type": "object",
             "properties": {
                 "game": {
-                    "$ref": "#/definitions/types.GameResultGameDTO"
+                    "$ref": "#/definitions/intelliquiz_src_types.GameResultGameDTO"
                 }
             }
         },
-        "types.GameResultDetailedResponseStruct": {
+        "intelliquiz_src_types.GameResultDetailedResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.GameResultDetailedDataStruct"
+                    "$ref": "#/definitions/intelliquiz_src_types.GameResultDetailedDataStruct"
                 },
                 "status_code": {
                     "type": "integer",
@@ -2239,7 +2349,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GameResultGameDTO": {
+        "intelliquiz_src_types.GameResultGameDTO": {
             "type": "object",
             "properties": {
                 "correct_answers": {
@@ -2257,7 +2367,7 @@ const docTemplate = `{
                 "game_questions": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.GameQuestionResultDTO"
+                        "$ref": "#/definitions/intelliquiz_src_types.GameQuestionResultDTO"
                     }
                 },
                 "id": {
@@ -2282,7 +2392,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GameResultQuestionDTO": {
+        "intelliquiz_src_types.GameResultQuestionDTO": {
             "type": "object",
             "properties": {
                 "content": {
@@ -2295,7 +2405,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GamesResultsDataStruct": {
+        "intelliquiz_src_types.GamesResultsDataStruct": {
             "type": "object",
             "properties": {
                 "correct_answers": {
@@ -2332,13 +2442,13 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GamesResultsResponseStruct": {
+        "intelliquiz_src_types.GamesResultsResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.GamesResultsDataStruct"
+                        "$ref": "#/definitions/intelliquiz_src_types.GamesResultsDataStruct"
                     }
                 },
                 "status_code": {
@@ -2351,13 +2461,132 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GetCategoriesSuccessResponseStruct": {
+        "intelliquiz_src_types.GenerateQuestionRequestDTO": {
+            "type": "object",
+            "required": [
+                "category_id",
+                "quiz_title"
+            ],
+            "properties": {
+                "category_id": {
+                    "type": "string",
+                    "example": "d27b21ab-6177-4159-9e13-15dc50ffed29"
+                },
+                "quiz_title": {
+                    "type": "string",
+                    "example": "Geography Quiz"
+                }
+            }
+        },
+        "intelliquiz_src_types.GenerateQuestionSuccessResponseDTO": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/intelliquiz_src_types.GeneratedQuestionDataDTO"
+                },
+                "statusCode": {
+                    "type": "integer",
+                    "example": 200
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": true
+                }
+            }
+        },
+        "intelliquiz_src_types.GenerateQuizRequestDTO": {
+            "type": "object",
+            "required": [
+                "category_id"
+            ],
+            "properties": {
+                "category_id": {
+                    "type": "string",
+                    "example": "d27b21ab-6177-4159-9e13-15dc50ffed29"
+                }
+            }
+        },
+        "intelliquiz_src_types.GenerateQuizSuccessResponseDTO": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/intelliquiz_src_types.GeneratedQuizDataDTO"
+                },
+                "statusCode": {
+                    "type": "integer",
+                    "example": 200
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": true
+                }
+            }
+        },
+        "intelliquiz_src_types.GeneratedChoiceDTO": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string",
+                    "example": "Paris"
+                },
+                "is_correct": {
+                    "type": "boolean",
+                    "example": true
+                }
+            }
+        },
+        "intelliquiz_src_types.GeneratedQuestionDataDTO": {
+            "type": "object",
+            "properties": {
+                "choices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/intelliquiz_src_types.GeneratedChoiceDTO"
+                    }
+                },
+                "question_content": {
+                    "type": "string",
+                    "example": "What is the capital of France?"
+                }
+            }
+        },
+        "intelliquiz_src_types.GeneratedQuizDataDTO": {
+            "type": "object",
+            "properties": {
+                "questions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/intelliquiz_src_types.GeneratedQuizQuestionDTO"
+                    }
+                },
+                "quiz_title": {
+                    "type": "string",
+                    "example": "European Capitals Quiz"
+                }
+            }
+        },
+        "intelliquiz_src_types.GeneratedQuizQuestionDTO": {
+            "type": "object",
+            "properties": {
+                "choices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/intelliquiz_src_types.GeneratedChoiceDTO"
+                    }
+                },
+                "question_content": {
+                    "type": "string",
+                    "example": "What is the capital of France?"
+                }
+            }
+        },
+        "intelliquiz_src_types.GetCategoriesSuccessResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.CategoryResponseStruct"
+                        "$ref": "#/definitions/intelliquiz_src_types.CategoryResponseStruct"
                     }
                 },
                 "statusCode": {
@@ -2370,7 +2599,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GetCategoryQuizDTO": {
+        "intelliquiz_src_types.GetCategoryQuizDTO": {
             "type": "object",
             "properties": {
                 "category_id": {
@@ -2391,11 +2620,11 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GetCategorySuccessResponseStruct": {
+        "intelliquiz_src_types.GetCategorySuccessResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.CategoryResponseStruct"
+                    "$ref": "#/definitions/intelliquiz_src_types.CategoryResponseStruct"
                 },
                 "statusCode": {
                     "type": "integer",
@@ -2407,11 +2636,11 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GetChoiceSuccessResponseStruct": {
+        "intelliquiz_src_types.GetChoiceSuccessResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.ChoiceDTO"
+                    "$ref": "#/definitions/intelliquiz_src_types.ChoiceDTO"
                 },
                 "statusCode": {
                     "type": "integer",
@@ -2423,13 +2652,13 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GetChoicesSuccessResponseStruct": {
+        "intelliquiz_src_types.GetChoicesSuccessResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.ChoiceDTO"
+                        "$ref": "#/definitions/intelliquiz_src_types.ChoiceDTO"
                     }
                 },
                 "statusCode": {
@@ -2442,7 +2671,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GetOwnQuizzesDataField": {
+        "intelliquiz_src_types.GetOwnQuizzesDataField": {
             "type": "object",
             "properties": {
                 "maxPage": {
@@ -2452,16 +2681,16 @@ const docTemplate = `{
                 "quizzes": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.QuizResponseDTO"
+                        "$ref": "#/definitions/intelliquiz_src_types.QuizResponseDTO"
                     }
                 }
             }
         },
-        "types.GetOwnQuizzesSuccessResponseStruct": {
+        "intelliquiz_src_types.GetOwnQuizzesSuccessResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.GetOwnQuizzesDataField"
+                    "$ref": "#/definitions/intelliquiz_src_types.GetOwnQuizzesDataField"
                 },
                 "statusCode": {
                     "type": "integer",
@@ -2473,11 +2702,11 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GetOwnUserSuccessResponseStruct": {
+        "intelliquiz_src_types.GetOwnUserSuccessResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.UserWithEmailResponseStruct"
+                    "$ref": "#/definitions/intelliquiz_src_types.UserWithEmailResponseStruct"
                 },
                 "statusCode": {
                     "type": "integer",
@@ -2489,11 +2718,11 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GetQuestionSuccessResponseStruct": {
+        "intelliquiz_src_types.GetQuestionSuccessResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.QuestionResponseDTO"
+                    "$ref": "#/definitions/intelliquiz_src_types.QuestionResponseDTO"
                 },
                 "statusCode": {
                     "type": "integer",
@@ -2505,13 +2734,13 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GetQuestionsSuccessResponseStruct": {
+        "intelliquiz_src_types.GetQuestionsSuccessResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.QuestionResponseDTO"
+                        "$ref": "#/definitions/intelliquiz_src_types.QuestionResponseDTO"
                     }
                 },
                 "statusCode": {
@@ -2524,11 +2753,11 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GetQuizSuccessResponseStruct": {
+        "intelliquiz_src_types.GetQuizSuccessResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.QuizDetailedResponseDTO"
+                    "$ref": "#/definitions/intelliquiz_src_types.QuizDetailedResponseDTO"
                 },
                 "statusCode": {
                     "type": "integer",
@@ -2540,7 +2769,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GetQuizzesDataField": {
+        "intelliquiz_src_types.GetQuizzesDataField": {
             "type": "object",
             "properties": {
                 "maxPage": {
@@ -2550,16 +2779,16 @@ const docTemplate = `{
                 "quizzes": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.QuizResponseDTO"
+                        "$ref": "#/definitions/intelliquiz_src_types.QuizResponseDTO"
                     }
                 }
             }
         },
-        "types.GetQuizzesSuccessResponseStruct": {
+        "intelliquiz_src_types.GetQuizzesSuccessResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.GetQuizzesDataField"
+                    "$ref": "#/definitions/intelliquiz_src_types.GetQuizzesDataField"
                 },
                 "statusCode": {
                     "type": "integer",
@@ -2571,13 +2800,13 @@ const docTemplate = `{
                 }
             }
         },
-        "types.GetUsersSuccessResponseStruct": {
+        "intelliquiz_src_types.GetUsersSuccessResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.UserResponseStruct"
+                        "$ref": "#/definitions/intelliquiz_src_types.UserResponseStruct"
                     }
                 },
                 "statusCode": {
@@ -2590,7 +2819,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.HomePageCategoryDTO": {
+        "intelliquiz_src_types.HomePageCategoryDTO": {
             "type": "object",
             "properties": {
                 "id": {
@@ -2603,42 +2832,42 @@ const docTemplate = `{
                 }
             }
         },
-        "types.HomePageDataField": {
+        "intelliquiz_src_types.HomePageDataField": {
             "type": "object",
             "properties": {
                 "bestQuizzesOfMonth": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.HomePageQuizDTO"
+                        "$ref": "#/definitions/intelliquiz_src_types.HomePageQuizDTO"
                     }
                 },
                 "curatedQuizzes": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.HomePageQuizDTO"
+                        "$ref": "#/definitions/intelliquiz_src_types.HomePageQuizDTO"
                     }
                 },
                 "mostLikedQuizzes": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.HomePageQuizDTO"
+                        "$ref": "#/definitions/intelliquiz_src_types.HomePageQuizDTO"
                     }
                 },
                 "mostPlayedQuizzes": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.HomePageQuizDTO"
+                        "$ref": "#/definitions/intelliquiz_src_types.HomePageQuizDTO"
                     }
                 },
                 "newlyAddedQuizzes": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.HomePageQuizDTO"
+                        "$ref": "#/definitions/intelliquiz_src_types.HomePageQuizDTO"
                     }
                 }
             }
         },
-        "types.HomePageGameDTO": {
+        "intelliquiz_src_types.HomePageGameDTO": {
             "type": "object",
             "properties": {
                 "correct_answers": {
@@ -2663,11 +2892,11 @@ const docTemplate = `{
                 }
             }
         },
-        "types.HomePageQuizDTO": {
+        "intelliquiz_src_types.HomePageQuizDTO": {
             "type": "object",
             "properties": {
                 "category": {
-                    "$ref": "#/definitions/types.HomePageCategoryDTO"
+                    "$ref": "#/definitions/intelliquiz_src_types.HomePageCategoryDTO"
                 },
                 "category_id": {
                     "type": "string",
@@ -2688,7 +2917,7 @@ const docTemplate = `{
                 "games": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.HomePageGameDTO"
+                        "$ref": "#/definitions/intelliquiz_src_types.HomePageGameDTO"
                     }
                 },
                 "games_played": {
@@ -2716,15 +2945,15 @@ const docTemplate = `{
                     "example": "2025-11-04T21:40:51.906957Z"
                 },
                 "user": {
-                    "$ref": "#/definitions/types.HomePageUserDTO"
+                    "$ref": "#/definitions/intelliquiz_src_types.HomePageUserDTO"
                 }
             }
         },
-        "types.HomePageSuccessResponseStruct": {
+        "intelliquiz_src_types.HomePageSuccessResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.HomePageDataField"
+                    "$ref": "#/definitions/intelliquiz_src_types.HomePageDataField"
                 },
                 "message": {
                     "type": "string",
@@ -2740,7 +2969,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.HomePageUserDTO": {
+        "intelliquiz_src_types.HomePageUserDTO": {
             "type": "object",
             "properties": {
                 "id": {
@@ -2753,7 +2982,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.InternalServerErrorResponseStruct": {
+        "intelliquiz_src_types.InternalServerErrorResponseStruct": {
             "type": "object",
             "properties": {
                 "message": {
@@ -2770,7 +2999,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.LoginRequestBody": {
+        "intelliquiz_src_types.LoginRequestBody": {
             "type": "object",
             "required": [
                 "password",
@@ -2787,7 +3016,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.LoginResponseData": {
+        "intelliquiz_src_types.LoginResponseData": {
             "type": "object",
             "properties": {
                 "refreshToken": {
@@ -2800,11 +3029,11 @@ const docTemplate = `{
                 }
             }
         },
-        "types.LoginResponseStruct": {
+        "intelliquiz_src_types.LoginResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.LoginResponseData"
+                    "$ref": "#/definitions/intelliquiz_src_types.LoginResponseData"
                 },
                 "statusCode": {
                     "type": "integer",
@@ -2816,7 +3045,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.NotFoundErrorResponseStruct": {
+        "intelliquiz_src_types.NotFoundErrorResponseStruct": {
             "type": "object",
             "properties": {
                 "message": {
@@ -2833,7 +3062,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.QuestionResponseDTO": {
+        "intelliquiz_src_types.QuestionResponseDTO": {
             "type": "object",
             "properties": {
                 "content": {
@@ -2850,7 +3079,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.QuizChoiceResponseDTO": {
+        "intelliquiz_src_types.QuizChoiceResponseDTO": {
             "type": "object",
             "properties": {
                 "content": {
@@ -2871,11 +3100,11 @@ const docTemplate = `{
                 }
             }
         },
-        "types.QuizDetailedResponseDTO": {
+        "intelliquiz_src_types.QuizDetailedResponseDTO": {
             "type": "object",
             "properties": {
                 "category": {
-                    "$ref": "#/definitions/types.CategoryQuizResponseDTOStruct"
+                    "$ref": "#/definitions/intelliquiz_src_types.CategoryQuizResponseDTOStruct"
                 },
                 "category_id": {
                     "type": "string",
@@ -2916,7 +3145,7 @@ const docTemplate = `{
                 "questions": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.QuizQuestionResponseDTO"
+                        "$ref": "#/definitions/intelliquiz_src_types.QuizQuestionResponseDTO"
                     }
                 },
                 "updated_at": {
@@ -2924,17 +3153,17 @@ const docTemplate = `{
                     "example": "2025-10-22T19:01:58.778079424Z"
                 },
                 "user": {
-                    "$ref": "#/definitions/types.UserQuizResponseDTOStruct"
+                    "$ref": "#/definitions/intelliquiz_src_types.UserQuizResponseDTOStruct"
                 }
             }
         },
-        "types.QuizQuestionResponseDTO": {
+        "intelliquiz_src_types.QuizQuestionResponseDTO": {
             "type": "object",
             "properties": {
                 "choices": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/types.QuizChoiceResponseDTO"
+                        "$ref": "#/definitions/intelliquiz_src_types.QuizChoiceResponseDTO"
                     }
                 },
                 "content": {
@@ -2951,11 +3180,11 @@ const docTemplate = `{
                 }
             }
         },
-        "types.QuizResponseDTO": {
+        "intelliquiz_src_types.QuizResponseDTO": {
             "type": "object",
             "properties": {
                 "category": {
-                    "$ref": "#/definitions/types.CategoryQuizResponseDTOStruct"
+                    "$ref": "#/definitions/intelliquiz_src_types.CategoryQuizResponseDTOStruct"
                 },
                 "category_id": {
                     "type": "string",
@@ -2998,11 +3227,11 @@ const docTemplate = `{
                     "example": "2025-10-22T19:01:58.778079424Z"
                 },
                 "user": {
-                    "$ref": "#/definitions/types.UserQuizResponseDTOStruct"
+                    "$ref": "#/definitions/intelliquiz_src_types.UserQuizResponseDTOStruct"
                 }
             }
         },
-        "types.RefreshRequestBody": {
+        "intelliquiz_src_types.RefreshRequestBody": {
             "type": "object",
             "required": [
                 "refreshToken"
@@ -3014,7 +3243,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.RefreshResponseData": {
+        "intelliquiz_src_types.RefreshResponseData": {
             "type": "object",
             "properties": {
                 "refreshToken": {
@@ -3027,11 +3256,11 @@ const docTemplate = `{
                 }
             }
         },
-        "types.RefreshResponseStruct": {
+        "intelliquiz_src_types.RefreshResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.RefreshResponseData"
+                    "$ref": "#/definitions/intelliquiz_src_types.RefreshResponseData"
                 },
                 "statusCode": {
                     "type": "integer",
@@ -3043,7 +3272,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.SignUpRequestBody": {
+        "intelliquiz_src_types.SignUpRequestBody": {
             "type": "object",
             "required": [
                 "email",
@@ -3071,7 +3300,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.SignUpResponseData": {
+        "intelliquiz_src_types.SignUpResponseData": {
             "type": "object",
             "properties": {
                 "refreshToken": {
@@ -3084,11 +3313,11 @@ const docTemplate = `{
                 }
             }
         },
-        "types.SignUpResponseStruct": {
+        "intelliquiz_src_types.SignUpResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.SignUpResponseData"
+                    "$ref": "#/definitions/intelliquiz_src_types.SignUpResponseData"
                 },
                 "statusCode": {
                     "type": "integer",
@@ -3100,7 +3329,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.StartGameDataStruct": {
+        "intelliquiz_src_types.StartGameDataStruct": {
             "type": "object",
             "properties": {
                 "game_id": {
@@ -3108,7 +3337,7 @@ const docTemplate = `{
                     "example": "550e8400-e29b-41d4-a716-446655440003"
                 },
                 "question": {
-                    "$ref": "#/definitions/types.GameQuestionDTO"
+                    "$ref": "#/definitions/intelliquiz_src_types.GameQuestionDTO"
                 },
                 "total_questions": {
                     "type": "integer",
@@ -3116,11 +3345,11 @@ const docTemplate = `{
                 }
             }
         },
-        "types.StartGameResponseStruct": {
+        "intelliquiz_src_types.StartGameResponseStruct": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/types.StartGameDataStruct"
+                    "$ref": "#/definitions/intelliquiz_src_types.StartGameDataStruct"
                 },
                 "status_code": {
                     "type": "integer",
@@ -3132,7 +3361,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.SuccessResponseStruct": {
+        "intelliquiz_src_types.SuccessResponseStruct": {
             "type": "object",
             "properties": {
                 "message": {
@@ -3149,7 +3378,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.UpdateChoiceRequestBody": {
+        "intelliquiz_src_types.UpdateChoiceRequestBody": {
             "type": "object",
             "properties": {
                 "content": {
@@ -3162,7 +3391,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.UpdateQuestionRequestBody": {
+        "intelliquiz_src_types.UpdateQuestionRequestBody": {
             "type": "object",
             "properties": {
                 "content": {
@@ -3171,7 +3400,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.UpdateQuizRequestBody": {
+        "intelliquiz_src_types.UpdateQuizRequestBody": {
             "type": "object",
             "properties": {
                 "category_id": {
@@ -3188,7 +3417,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.UpdateUserRequestBody": {
+        "intelliquiz_src_types.UpdateUserRequestBody": {
             "type": "object",
             "properties": {
                 "email": {
@@ -3202,7 +3431,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.UserQuizResponseDTOStruct": {
+        "intelliquiz_src_types.UserQuizResponseDTOStruct": {
             "type": "object",
             "properties": {
                 "id": {
@@ -3219,7 +3448,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.UserResponseStruct": {
+        "intelliquiz_src_types.UserResponseStruct": {
             "type": "object",
             "properties": {
                 "id": {
@@ -3236,7 +3465,7 @@ const docTemplate = `{
                 }
             }
         },
-        "types.UserWithEmailResponseStruct": {
+        "intelliquiz_src_types.UserWithEmailResponseStruct": {
             "type": "object",
             "properties": {
                 "email": {
